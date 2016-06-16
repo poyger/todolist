@@ -1,4 +1,4 @@
-package golden.real.estate;
+package com.goldenrealestate;
 
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
@@ -21,9 +21,9 @@ public class TestHomePage
 	public void homepageRendersSuccessfully()
 	{
 		//start and render the test page
-		tester.startPage(HomePage.class);
+		tester.startPage(BasePage.class);
 
 		//assert rendered page class
-		tester.assertRenderedPage(HomePage.class);
+		tester.assertRenderedPage(BasePage.class);
 	}
 }

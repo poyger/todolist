@@ -1,4 +1,4 @@
-package golden.real.estate;
+package com.goldenrealestate;
 
 import java.lang.management.ManagementFactory;
 

@@ -20,11 +20,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>golden.real.estate</groupId>
+	<groupId>com.goldenrealestate</groupId>
 	<artifactId>todolist</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
-		<!-- TODO project name  -->
 	<name>todolist</name>
 	<licenses>
 		<license>
@@ -77,6 +76,12 @@
             <groupId>de.agilecoders.wicket</groupId>
             <artifactId>wicket-bootstrap-themes</artifactId>
             <version>${wicket-bootstrap.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.wicketstuff</groupId>
+            <artifactId>wicketstuff-annotation</artifactId>
+            <version>7.3.0</version>
         </dependency>
 
         <!-- LOGGING DEPENDENCIES - LOG4J -->
