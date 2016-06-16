@@ -1,5 +1,6 @@
 package com.goldenrealestate;
 
+import com.goldenrealestate.pages.BasePage;
 import de.agilecoders.wicket.core.Bootstrap;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
@@ -28,6 +29,6 @@ public class WicketApplication extends WebApplication
 	public void init() {
 		super.init();
         Bootstrap.install(this);
-        new AnnotatedMountScanner().scanPackage("com.goldenrealestate").mount(this);
+        new AnnotatedMountScanner().scanPackage("com.goldenrealestate.pages").mount(this);
     }
 }

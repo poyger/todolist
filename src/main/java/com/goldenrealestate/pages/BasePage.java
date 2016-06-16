@@ -1,4 +1,4 @@
-package com.goldenrealestate;
+package com.goldenrealestate.pages;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.html.HtmlTag;
 import de.agilecoders.wicket.core.markup.html.bootstrap.image.GlyphIconType;

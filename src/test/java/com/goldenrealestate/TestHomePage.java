@@ -1,5 +1,6 @@
 package com.goldenrealestate;
 
+import com.goldenrealestate.pages.BasePage;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;

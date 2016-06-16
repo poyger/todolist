@@ -1,5 +1,6 @@
-package com.goldenrealestate;
+package com.goldenrealestate.pages;
 
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.wicketstuff.annotation.mount.MountPath;
 
@@ -12,5 +13,6 @@ import org.wicketstuff.annotation.mount.MountPath;
 public class HomePage extends BasePage {
     public HomePage(PageParameters parameters) {
         super(parameters);
+        add(new Label("home-message", "Hello home!"));
     }
 }
