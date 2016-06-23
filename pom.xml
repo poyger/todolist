@@ -38,7 +38,7 @@
 		<jetty9.version>9.2.13.v20150730</jetty9.version>
 		<log4j.version>2.5</log4j.version>
 		<junit.version>4.12</junit.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- allowed values: R7, 1.0, 1.5, 2.0 or none -->
 		<wtp.version>none</wtp.version>
 	</properties>
@@ -82,6 +82,19 @@
             <groupId>org.wicketstuff</groupId>
             <artifactId>wicketstuff-annotation</artifactId>
             <version>7.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.2.0.Final</version>
+        </dependency>
+
+        <!-- The tutorials use the PostgreSQL 9.3.5 database -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4.1208.jre7</version>
         </dependency>
 
         <!-- LOGGING DEPENDENCIES - LOG4J -->

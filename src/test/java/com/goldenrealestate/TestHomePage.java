@@ -24,7 +24,7 @@ public class TestHomePage
 		//start and render the test page
 		tester.startPage(BasePage.class);
 
-		//assert rendered page class
+		//assert rendered p age class
 		tester.assertRenderedPage(BasePage.class);
 	}
 }
