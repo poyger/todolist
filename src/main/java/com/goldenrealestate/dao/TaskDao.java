@@ -1,6 +1,6 @@
 package com.goldenrealestate.dao;
 
-import com.goldenrealestate.model.Employee;
+import com.goldenrealestate.model.Task;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -8,24 +8,28 @@ import java.util.List;
 
 import static com.goldenrealestate.util.HibernateUtil.getSession;
 
-public class EmployeeDao {
+/**
+ * User: Poyan Gerami
+ * Email: poyan.gerami@eniro.com
+ * Date: 25/06/16
+ */
+public class TaskDao {
 
-    public static void save(Employee employee) {
+    public static void save(Task task) {
         Session session = getSession();
         session.beginTransaction();
-        session.saveOrUpdate(employee);
+        session.save(task);
         session.getTransaction().commit();
     }
 
-    public static List<Employee> getAll() {
+    public static List<Task> getAll() {
         Session session = getSession();
         session.beginTransaction();
-        String hql = "FROM Employee AS E";
-        Query<Employee> query = session.createQuery(hql, Employee.class);
-        List<Employee> employees = query.list();
+        String hql = "FROM Task AS T";
+        Query<Task> query = session.createQuery(hql, Task.class);
+        List<Task> tasks = query.list();
         session.getTransaction().commit();
-        return employees;
+        return tasks;
     }
 
 }
-

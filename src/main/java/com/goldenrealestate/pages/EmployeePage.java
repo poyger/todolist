@@ -1,9 +1,9 @@
 package com.goldenrealestate.pages;
 
 import com.goldenrealestate.dao.EmployeeDao;
+import com.goldenrealestate.model.Employee;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.goldenrealestate.model.*;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
@@ -15,24 +15,22 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.wicketstuff.annotation.mount.MountPath;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.List;
+
+import static com.goldenrealestate.dao.EmployeeDao.*;
 
 @MountPath(value = "/employee")
 public class EmployeePage extends BasePage {
     private static final Logger LOGGER = LogManager.getLogger(EmployeePage.class);
-    ArrayList<Employee> employeeArrayList = new ArrayList<>();
+    List<Employee> employees = new ArrayList<>();
 
     public EmployeePage(PageParameters pageParameters) {
         super(pageParameters);
         final Employee employee = new Employee();
         final Form form = new Form("form", new CompoundPropertyModel(employee)) {
             protected void onSubmit() {
-                Employee insertEmployee = new Employee();
-                insertEmployee.setName(employee.getName());
-                insertEmployee.setAge(employee.getAge());
                 LOGGER.info("Created employee {}", employee);
-                EmployeeDao.save(insertEmployee);
-                //setResponsePage(new EmployeePage(employee));
+                save(employee);
             }
         };
         final TextField name = new TextField("name");
@@ -41,27 +39,21 @@ public class EmployeePage extends BasePage {
         form.add(age);
         add(form);
 
-     /**   Label label = new Label("employee", employeeArrayList) {
+        ListView<Employee> listView = new ListView<Employee>("employees", new PropertyModel(this, "employees")) {
             @Override
-            public boolean isVisible() {
-                return !employeeArrayList.isEmpty();
-            }
-        };  **/
-
-        ListView<Employee> listView = new ListView<Employee>("employees", employeeArrayList) {
-            @Override
-            protected void populateItem(ListItem<Employee> item) {
-                item.add(new Label("name", new PropertyModel(item.getModel(), "name")));
-                item.add(new Label("age", new PropertyModel(item.getModel(), "age")));
-            }
-            @Override
-            public boolean isVisible() {
-                return !employeeArrayList.isEmpty();
+            protected void populateItem(ListItem item) {
+                Employee result = (Employee) item.getModelObject();
+                item.add(new Label( "name", result.getName()));
+                item.add(new Label("age", result.getAge()));
             }
         };
-
         add(listView);
+    }
 
+    @Override
+    protected void onBeforeRender() {
+        employees = getAll();
+        super.onBeforeRender();
     }
 
 }

@@ -33,8 +33,10 @@ public class BasePage extends WebPage {
 
         navbar.addComponents(transform(Navbar.ComponentPosition.LEFT,
                 new NavbarButton<Void>(HomePage.class, Model.of("Home")).setIconType(GlyphIconType.home),
-                new NavbarButton<Void>(EmployeePage.class, Model.of("Employee"))
-        ));
+                new NavbarButton<Void>(EmployeePage.class, Model.of("Employee")),
+                new NavbarButton<Void>(BuildingPage.class, Model.of("Building")),
+                new NavbarButton<Void>(TaskPage.class, Model.of("Task"))
+                ));
         return navbar;
     }
 }

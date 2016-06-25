@@ -40,7 +40,7 @@ public class Employee implements Serializable {
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "Employee{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
                 '}';
