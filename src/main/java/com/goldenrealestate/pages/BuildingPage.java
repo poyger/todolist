@@ -1,6 +1,5 @@
 package com.goldenrealestate.pages;
 
-import com.goldenrealestate.dao.BuildingDao;
 import com.goldenrealestate.model.Building;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,7 +17,8 @@ import org.wicketstuff.annotation.mount.MountPath;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.goldenrealestate.dao.BuildingDao.*;
+import static com.goldenrealestate.dao.BuildingDao.getAll;
+import static com.goldenrealestate.dao.BuildingDao.save;
 
 @MountPath(value = "/building")
 public class BuildingPage extends BasePage {

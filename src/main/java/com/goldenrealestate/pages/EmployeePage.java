@@ -1,6 +1,5 @@
 package com.goldenrealestate.pages;
 
-import com.goldenrealestate.dao.EmployeeDao;
 import com.goldenrealestate.model.Employee;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,7 +16,8 @@ import org.wicketstuff.annotation.mount.MountPath;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.goldenrealestate.dao.EmployeeDao.*;
+import static com.goldenrealestate.dao.EmployeeDao.getAll;
+import static com.goldenrealestate.dao.EmployeeDao.save;
 
 @MountPath(value = "/employee")
 public class EmployeePage extends BasePage {

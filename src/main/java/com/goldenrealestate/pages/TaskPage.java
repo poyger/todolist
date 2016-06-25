@@ -3,7 +3,6 @@ package com.goldenrealestate.pages;
 import com.goldenrealestate.dao.BuildingDao;
 import com.goldenrealestate.dao.EmployeeDao;
 import com.goldenrealestate.dao.TaskDao;
-import com.goldenrealestate.model.Employee;
 import com.goldenrealestate.model.Task;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

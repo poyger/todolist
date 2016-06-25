@@ -1,7 +1,6 @@
 package com.goldenrealestate.pages;
 
 import com.goldenrealestate.model.Employee;
-import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
