@@ -22,7 +22,14 @@
             <div wicket:id="name" style="display: table-cell;"></div>
         </div>
     </div>
-
+    <br>
+    <form wicket:id="get-tasks-form">
+        <fieldset>
+            <select wicket:id="building" />
+            <input type="button" wicket:id="get-tasks-button" size="50" value="get tasks"/>
+        </fieldset>
+    </form>
+    <h1 wicket:id="tasks"/>
 </wicket:extend>
 </body>
 </html>

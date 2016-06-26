@@ -1,5 +1,6 @@
 package com.goldenrealestate.dao;
 
+import com.goldenrealestate.model.Building;
 import com.goldenrealestate.model.Employee;
 import com.goldenrealestate.model.Task;
 import org.hibernate.Session;
@@ -43,5 +44,13 @@ public class TaskDao {
         return tasks;
     }
 
-
+    public static List<Task> getTask(Building building) {
+        Session session = getSession();
+        session.beginTransaction();
+        String hql = "FROM Task AS T where T.building.id=" + building.getId();
+        Query<Task> query = session.createQuery(hql, Task.class);
+        List<Task> tasks = query.list();
+        session.getTransaction().commit();
+        return tasks;
+    }
 }

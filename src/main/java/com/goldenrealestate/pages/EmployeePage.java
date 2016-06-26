@@ -78,10 +78,10 @@ public class EmployeePage extends BasePage {
         getTasks.add(employeeDropDownChoice);
 
 
-        final Model<String> strMdl = Model.of();
-        final Label msg = new Label("tasks", strMdl);
-        msg.setOutputMarkupId(true);
-        add(msg);
+        final Model<String> outputTaskModel = Model.of();
+        final Label outputTaskLabel = new Label("tasks", outputTaskModel);
+        outputTaskLabel.setOutputMarkupId(true);
+        add(outputTaskLabel);
 
         AjaxButton ab = new AjaxButton("get-tasks-button") {
             protected void onSubmit(AjaxRequestTarget target, Form form) {
@@ -89,11 +89,11 @@ public class EmployeePage extends BasePage {
                     List<Task> tasks = TaskDao.getTask(task.getEmployee());
                     List<String> taskDescriptions = tasks.stream().map(Task::getTaskDescription).collect(Collectors.toList());
                     if (!taskDescriptions.isEmpty()) {
-                        strMdl.setObject(taskDescriptions.toString());
+                        outputTaskModel.setObject(taskDescriptions.toString());
                     } else {
-                        strMdl.setObject("No tasks for employee " + task.getEmployee());
+                        outputTaskModel.setObject("No tasks for employee " + task.getEmployee());
                     }
-                    target.add(msg);
+                    target.add(outputTaskLabel);
                 }
             }
         };

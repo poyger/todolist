@@ -1,9 +1,5 @@
 package com.goldenrealestate;
 
-import java.lang.management.ManagementFactory;
-
-import javax.management.MBeanServer;
-
 import org.eclipse.jetty.jmx.MBeanContainer;
 import org.eclipse.jetty.server.HttpConfiguration;
 import org.eclipse.jetty.server.HttpConnectionFactory;
@@ -14,6 +10,9 @@ import org.eclipse.jetty.server.SslConnectionFactory;
 import org.eclipse.jetty.util.resource.Resource;
 import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.eclipse.jetty.webapp.WebAppContext;
+
+import javax.management.MBeanServer;
+import java.lang.management.ManagementFactory;
 
 /**
  * Separate startup class for people that want to run the examples directly. Use parameter
