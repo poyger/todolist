@@ -1,20 +1,31 @@
 package com.goldenrealestate.pages;
 
+import com.goldenrealestate.dao.EmployeeDao;
+import com.goldenrealestate.dao.TaskDao;
 import com.goldenrealestate.model.Employee;
+import com.goldenrealestate.model.Task;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.form.RequiredTextField;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.wicketstuff.annotation.mount.MountPath;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.goldenrealestate.dao.EmployeeDao.getAll;
 import static com.goldenrealestate.dao.EmployeeDao.save;
@@ -33,8 +44,8 @@ public class EmployeePage extends BasePage {
                 save(employee);
             }
         };
-        final TextField name = new TextField("name");
-        final TextField age = new TextField("age");
+        final TextField name = new RequiredTextField("name");
+        final TextField age = new RequiredTextField("age");
         form.add(name);
         form.add(age);
         add(form);
@@ -43,11 +54,51 @@ public class EmployeePage extends BasePage {
             @Override
             protected void populateItem(ListItem item) {
                 Employee result = (Employee) item.getModelObject();
-                item.add(new Label( "name", result.getName()));
+                item.add(new Label("name", result.getName()));
                 item.add(new Label("age", result.getAge()));
             }
         };
         add(listView);
+
+
+        final Task task = new Task();
+        final IModel<Task> iModel = new CompoundPropertyModel<>(task);
+        final Form getTasks = new Form("get-tasks-form", iModel);
+        IModel<List<Employee>> modelEmployeeChoice = new AbstractReadOnlyModel<List<Employee>>() {
+            @Override
+            public List<Employee> getObject() {
+                return EmployeeDao.getAll();
+            }
+        };
+
+
+        DropDownChoice employeeDropDownChoice = new DropDownChoice(
+                "employee",
+                modelEmployeeChoice);
+        getTasks.add(employeeDropDownChoice);
+
+
+        final Model<String> strMdl = Model.of();
+        final Label msg = new Label("tasks", strMdl);
+        msg.setOutputMarkupId(true);
+        add(msg);
+
+        AjaxButton ab = new AjaxButton("get-tasks-button") {
+            protected void onSubmit(AjaxRequestTarget target, Form form) {
+                if (target != null) {
+                    List<Task> tasks = TaskDao.getTask(task.getEmployee());
+                    List<String> taskDescriptions = tasks.stream().map(Task::getTaskDescription).collect(Collectors.toList());
+                    if (!taskDescriptions.isEmpty()) {
+                        strMdl.setObject(taskDescriptions.toString());
+                    } else {
+                        strMdl.setObject("No tasks for employee " + task.getEmployee());
+                    }
+                    target.add(msg);
+                }
+            }
+        };
+        getTasks.add(ab);
+        add(getTasks);
     }
 
     @Override

@@ -13,7 +13,7 @@ public class EmployeeDao {
     public static void save(Employee employee) {
         Session session = getSession();
         session.beginTransaction();
-        session.saveOrUpdate(employee);
+        session.save(employee);
         session.getTransaction().commit();
     }
 

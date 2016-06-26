@@ -10,11 +10,12 @@
     <a name="top" style="display: none;"></a>
 
     <form wicket:id="form">
-        Name <input type="text" wicket:id="name" /><br />
-        Age <input type="text" wicket:id="age" /><br />
+        Name:<input type="text" wicket:id="name"/>  Age: <input type="text" wicket:id="age" />
         <input type="submit" value="Add employee" />
     </form>
-
+    <br>
+    <h5>All employees</h5>
+    <br>
     <div id="bd" style="display: table;">
         <div wicket:id="employees" style="display: table-row;">
             <div style="display: table-cell;"><b> Name: </b></div>
@@ -23,7 +24,14 @@
             <div wicket:id="age" style="display: table-cell;"></div>
         </div>
     </div>
-
+    <br>
+    <form wicket:id="get-tasks-form">
+        <fieldset>
+            <select wicket:id="employee" />
+            <input type="button" wicket:id="get-tasks-button" size="50" value="get tasks"/>
+        </fieldset>
+    </form>
+    <h1 wicket:id="tasks"/>
 </wicket:extend>
 </body>
 </html>
