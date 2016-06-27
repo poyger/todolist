@@ -1,20 +1,18 @@
-**prerequisites**
-Postgres 
-java 8
+Simple todo list application, start the application with **mvn jetty:run**
 
-**features**
+##prerequisites
+* Postgres 
+* java 8
 
-add employee
-add buildings
-add tasks 
-get tasks for employee
-get tasks for buildings
+##features
+* add employee
+* add buildings
+* add tasks 
+* get tasks for employee
+* get tasks for buildings
 
-start the application with **mvn jetty:run**
-
-
-**todo**
-better user interface
-unit testing
+##todo
+* better user interface
+* unit testing
 
 
