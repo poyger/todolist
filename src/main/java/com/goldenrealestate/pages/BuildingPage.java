@@ -13,13 +13,10 @@ import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.RequiredTextField;
 import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.wicketstuff.annotation.mount.MountPath;
 
@@ -33,8 +30,6 @@ import static com.goldenrealestate.dao.BuildingDao.save;
 @MountPath(value = "/building")
 public class BuildingPage extends BasePage {
     private static final Logger LOGGER = LogManager.getLogger(BuildingPage.class);
-    List buildings = new ArrayList<>();
-
     public BuildingPage(PageParameters pageParameters) {
         super(pageParameters);
         final Building building = new Building();
@@ -42,6 +37,7 @@ public class BuildingPage extends BasePage {
             protected void onSubmit() {
                 LOGGER.info("Created building {}", building);
                 save(building);
+                building.setName(null);
             }
         };
         final TextField name = new RequiredTextField("name");
@@ -89,11 +85,5 @@ public class BuildingPage extends BasePage {
 
 
 
-    }
-
-    @Override
-    protected void onBeforeRender() {
-        buildings = getAll();
-        super.onBeforeRender();
     }
 }

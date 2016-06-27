@@ -13,13 +13,10 @@ import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.RequiredTextField;
 import org.apache.wicket.markup.html.form.TextField;
-import org.apache.wicket.markup.html.list.ListItem;
-import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.wicketstuff.annotation.mount.MountPath;
 
@@ -33,7 +30,6 @@ import static com.goldenrealestate.dao.EmployeeDao.save;
 @MountPath(value = "/employee")
 public class EmployeePage extends BasePage {
     private static final Logger LOGGER = LogManager.getLogger(EmployeePage.class);
-    List<Employee> employees = new ArrayList<>();
 
     public EmployeePage(PageParameters pageParameters) {
         super(pageParameters);
@@ -42,6 +38,8 @@ public class EmployeePage extends BasePage {
             protected void onSubmit() {
                 LOGGER.info("Created employee {}", employee);
                 save(employee);
+                employee.setAge(null);
+                employee.setName(null);
             }
         };
         final TextField name = new RequiredTextField("name");
@@ -88,12 +86,6 @@ public class EmployeePage extends BasePage {
         };
         getTasks.add(ab);
         add(getTasks);
-    }
-
-    @Override
-    protected void onBeforeRender() {
-        employees = getAll();
-        super.onBeforeRender();
     }
 
 }

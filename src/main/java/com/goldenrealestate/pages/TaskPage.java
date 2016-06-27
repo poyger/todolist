@@ -39,6 +39,7 @@ public class TaskPage extends BasePage {
             protected void onSubmit() {
                 LOGGER.info("Created task {}", task);
                 save(task);
+                task.setTaskDescription(null);
                 super.onSubmit();
             }
         };
