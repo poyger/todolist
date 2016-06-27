@@ -1,4 +1,4 @@
-Simple todo list application, start the application with **mvn jetty:run**
+Simple todo list application, start the application with **mvn jetty:run** and go to http://localhost:8080/
 
 ##prerequisites
 * Postgres 
