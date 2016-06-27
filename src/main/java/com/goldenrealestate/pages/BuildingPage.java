@@ -48,16 +48,6 @@ public class BuildingPage extends BasePage {
         form.add(name);
         add(form);
 
-        ListView<Building> listView = new ListView<Building>("buildings", new PropertyModel(this, "buildings")) {
-            @Override
-            protected void populateItem(ListItem item) {
-                Building result = (Building) item.getModelObject();
-                item.add( new Label( "name", result.getName() ) );
-            }
-        };
-
-        add(listView);
-
         final Task task = new Task();
         final IModel<Task> iModel = new CompoundPropertyModel<>(task);
         final Form getTasks = new Form("get-tasks-form", iModel);

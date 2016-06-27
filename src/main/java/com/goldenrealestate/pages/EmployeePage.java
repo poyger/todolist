@@ -50,17 +50,6 @@ public class EmployeePage extends BasePage {
         form.add(age);
         add(form);
 
-        ListView<Employee> listView = new ListView<Employee>("employees", new PropertyModel(this, "employees")) {
-            @Override
-            protected void populateItem(ListItem item) {
-                Employee result = (Employee) item.getModelObject();
-                item.add(new Label("name", result.getName()));
-                item.add(new Label("age", result.getAge()));
-            }
-        };
-        add(listView);
-
-
         final Task task = new Task();
         final IModel<Task> iModel = new CompoundPropertyModel<>(task);
         final Form getTasks = new Form("get-tasks-form", iModel);
