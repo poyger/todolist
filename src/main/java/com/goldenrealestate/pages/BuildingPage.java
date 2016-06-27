@@ -20,11 +20,9 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.wicketstuff.annotation.mount.MountPath;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.goldenrealestate.dao.BuildingDao.getAll;
 import static com.goldenrealestate.dao.BuildingDao.save;
 
 @MountPath(value = "/building")
